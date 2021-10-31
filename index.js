@@ -5,27 +5,48 @@ app.use(express.json());
 
 const PORT = 1150;
 
-let data = {
-    date: "today",
-    school: "SCTCC",
-    class: "mobile"
+let user = {
+    username: "Caleb_Halvorson",
+    password: "password123",
+    email: "test@gmail.com",
+    courses:{
+        course: {
+            courseID: "CMSC2204",
+            courseName: "mobile",
+            startDate: "8/29/2021",
+            endDate: "12/21/2021"
+        },
+        course1:{
+            courseID: "CMSC2201",
+            courseName: "Database II",
+            startDate: "8/29/2021",
+            endDate: "12/21/2021"
+        },
+        course2:{
+            courseID: "CMSC2203",
+            courseName: "C# Programming",
+            startDate: "8/29/2021",
+            endDate: "12/21/2021"
+        }
+    }
+
 }
 
-app.get('/getData', (req, res) =>{
+app.get('/getUser', (req, res) =>{
     try{
-        return res.status(200).json(data);
+        return res.status(200).json(user);
     }
     catch{
         return res.status(500);
     }
 });
 
-app.post('/sendData', (req,res) =>{
+app.post('/addUser', (req,res) =>{
     try {
-        let schoolVar = req.body.object.school1;
+        let userVar = req.body.user;
 
-        console.log(schoolVar);
-        return res.status(200).json("Good request");
+        console.log(userVar);
+        return res.status(200).json(`Added user ${userVar.username} successfully`);
     } 
     catch{
         return res.status(500);
